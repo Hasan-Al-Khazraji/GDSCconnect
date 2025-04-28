@@ -1,3 +1,5 @@
+import ProfileHero from "./ProfileHero";
+
 export default function ProfileContainer() {
 
     function colorLetters(str: string) {
@@ -14,11 +16,8 @@ export default function ProfileContainer() {
             <div className="bg-black rounded-t-2xl">
                 <img src={require("../assets/images/GDSC_Hacks_Logo.png")} alt="Hello" className="scale-90" />
             </div>
-            <div className="bg-white rounded-b-2xl">
-                <h1 className="text-center font-bold text-6xl font-google">
-                    <span dangerouslySetInnerHTML={{ __html: colorLetters('GDSC') }}></span>
-                    <span> Connect</span>
-                </h1>
+            <div className="bg-white rounded-b-2xl pt-8">
+                <ProfileHero />
                 <img src={require("../assets/images/GDG_Watermark.png")} alt="Hello" className="w-24 p-3" />
             </div>
         </div>
