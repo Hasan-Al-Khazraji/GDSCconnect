@@ -1,5 +1,6 @@
 import { useParams } from 'react-router-dom';
 import ResponsiveWrapper from '../components/ResponsiveWrapper';
+import ProfileContainer from '../components/ProfileContainer';
 
 export default function Home() {
 
@@ -8,9 +9,7 @@ export default function Home() {
 
     return (
         <ResponsiveWrapper>
-            <h1 className="text-3xl font-bold underline text-center">Hello world!</h1>
-            <p className="text-center">This is a simple example of a responsive wrapper component.</p>
-            <p className="text-center">The id from the URL is: {id}</p>
+            <ProfileContainer />
         </ResponsiveWrapper>
     );
     }
