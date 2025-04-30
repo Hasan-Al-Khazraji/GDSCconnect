@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
+// console.log("ENV Project ID:", process.env.REACT_APP_PROJECT_ID);
 
 const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
@@ -11,7 +12,7 @@ const firebaseConfig = {
   measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
 
-console.log("Firebase projectId:", process.env.REACT_APP_PROJECT_ID);
+console.log(process.env.REACT_APP_PROJECT_ID ? 'Connected to Firebase' : 'Failed to Connect to Firebase ');
 const app = initializeApp(firebaseConfig);
 
 export const db = getFirestore(app);
