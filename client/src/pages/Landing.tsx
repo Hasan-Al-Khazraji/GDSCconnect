@@ -1,14 +1,29 @@
 import { useState } from 'react';
+import { db } from '../firebase'
+import { doc, getDoc } from 'firebase/firestore';
 
 export default function Landing() {
     const [uniqueId, setUniqueId] = useState('');
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         if (uniqueId.trim() && !isNaN(Number(uniqueId))) {
-            console.log(`ID submitted: ${uniqueId}`);
-            // Redirect to the profile page with the unique ID
-            window.location.href = `/${uniqueId}`;
+            try {
+                console.log('meow1')
+                const dataRef = doc(db, 'users', uniqueId);
+                const snapshot = await getDoc(dataRef);
+                console.log(snapshot.data())
+                if (snapshot.exists()) {
+                    const userData = snapshot.data();
+                    console.log('User Data:', userData);
+                    window.location.href = `/${uniqueId}`;
+                } else {
+                    alert('No data found for this ID, contact admin.');
+                }
+            } catch (error) {
+                console.error('Error fetching data:', error);
+                alert('An error occurred while fetching data.');
+            }
         } else {
             alert('Please enter a valid unique ID from 001 to 250.');
         }
