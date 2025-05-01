@@ -23,6 +23,9 @@ function Header() {
           <button onClick={handleLogOut} className="p-2 bg-red-500 text-white rounded">
             Log Out
           </button>
+          <a href="/" className="ml-4 p-2 bg-green-500 text-white rounded">
+            View Other Users
+          </a>
         </>
       ) : (
         <>
