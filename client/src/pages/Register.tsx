@@ -3,11 +3,20 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { doc, getDoc } from 'firebase/firestore';
 import { db } from '../firebase';
 import RegisterForm from '../components/RegisterForm';
+import { useAuth } from "../Contexts/AuthContext";
 
 export default function Landing() {
   const { id } = useParams(); 
   const navigate = useNavigate();
   const [checking, setChecking] = useState(true); 
+  const { authUser } = useAuth();
+  const [alertShown, setAlertShown] = useState(false);
+
+  if (authUser?.email && !alertShown) {
+    alert("Account does not exist!");
+    setAlertShown(true); // Mark the alert as shown
+    navigate(`/`);
+  }
 
   useEffect(() => {
     const checkIfRegistered = async () => {
