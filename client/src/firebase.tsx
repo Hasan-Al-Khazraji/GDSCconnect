@@ -14,5 +14,4 @@ const firebaseConfig = {
 
 console.log(process.env.REACT_APP_PROJECT_ID ? 'Connected to Firebase' : 'Failed to Connect to Firebase ');
 const app = initializeApp(firebaseConfig);
-
 export const db = getFirestore(app);

@@ -1,32 +1,42 @@
-import React from 'react'
+import React, { useState } from 'react';
 import { useAuth } from '../Contexts/AuthContext';
-function Header() {
-    const {
-        authUser,
-        setAuthUser,
-        isLoggedIn,
-        setIsLoggedIn,
-    } = useAuth()
+import { getAuth, signOut } from 'firebase/auth';
+import LoginForm from './LoginForm';
 
-    const logIn = (e) => {
-        e.preventDefault()
-        setAuthUser({ name: "John Doe" })
-        setIsLoggedIn(true)
-    }
-    const logOut = (e) => {
-      e.preventDefault()
-      setAuthUser(null)
-      setIsLoggedIn(false)
-  }
+function Header() {
+  const { authUser, isLoggedIn } = useAuth();
+  const [showLoginForm, setShowLoginForm] = useState(false);
+
+  const handleLogOut = async () => {
+    const auth = getAuth();
+    await signOut(auth);
+  };
+
+  const toggleLoginForm = () => {
+    setShowLoginForm((prev) => !prev);
+  };
+
   return (
-    <>
-      {console.log(`User is currently ${isLoggedIn ? ' logged in' : ' logged out'}`)}
-      {isLoggedIn ? <h1>Welcome, {authUser.name}</h1> : <h1>Please log in</h1>}
-    {isLoggedIn
-      ? <button onClick={(e)=>{logOut(e)}}>Log Out</button>
-      : <button onClick={(e)=>{logIn(e)}}>Log In</button>}
-    </>
-  )
+    <div className="p-4">
+      {isLoggedIn ? (
+        <>
+          <button onClick={handleLogOut} className="p-2 bg-red-500 text-white rounded">
+            Log Out
+          </button>
+        </>
+      ) : (
+        <>
+          {!showLoginForm ? (
+            <button onClick={toggleLoginForm} className="p-2 bg-blue-500 text-white rounded">
+              Log In
+            </button>
+          ) : (
+            <LoginForm />
+          )}
+        </>
+      )}
+    </div>
+  );
 }
 
-export default Header
+export default Header;

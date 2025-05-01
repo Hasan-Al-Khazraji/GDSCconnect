@@ -1,4 +1,5 @@
 import React, {useContext, useState, useEffect} from 'react';
+import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
 const AuthContext = React.createContext();
 
@@ -10,20 +11,20 @@ export function AuthProvider(props){
     const [authUser, setAuthUser] = useState(null);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-    // useEffect(() => {
-    //     const subscribe = AuthService.subscribe((user)=>{
-    //         if (user) {
-    //             setAuthUser(user);
-    //             setIsLoggedIn(true);
-    //         }
-    //         else {
-    //             setAuthUser(null);
-    //             setIsLoggedIn(false);
-    //         }
-    //     })
+    useEffect(() => {
+        const auth = getAuth(); // Get Firebase Auth instance
+        const unsubscribe = onAuthStateChanged(auth, (user) => {       
+            if (user) {
+                setAuthUser(user);
+                setIsLoggedIn(true);
+            } else {
+                setAuthUser(null);
+                setIsLoggedIn(false);
+            }
+        })
 
-    //     return subscribe;
-    // })
+        return () => unsubscribe();
+    }, [])
 
     const value = {
         authUser,

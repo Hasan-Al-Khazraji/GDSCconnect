@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth';
 import { db } from '../firebase';
 import { useParams } from 'react-router-dom';
 
@@ -23,19 +24,21 @@ export default function RegisterForm({ onRedirect }: RegisterFormProps) {
 
     if (uniqueId.trim() && !isNaN(Number(uniqueId))) {
       try {
-        const dataRef = doc(db, 'hackers', uniqueId);
-        const snapshot = await getDoc(dataRef);
+        const auth = getAuth();
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        console.log('Firebase user created:', userCredential.user);
 
-          await updateDoc(dataRef, {
-            email,
-            password,
-          });
-          alert('Registration successful!');
-          onRedirect(`/${uniqueId}`);
-        } 
-      catch (error) {
-        console.error('Error updating data:', error);
-        alert('An error occurred while updating data.');
+        const dataRef = doc(db, 'hackers', uniqueId);
+        await updateDoc(dataRef, {
+          email,
+          password,
+        });
+
+        alert('Registration successful!');
+        onRedirect(`/${uniqueId}`);
+      } catch (error) {
+        console.error('Error during registration:', error);
+        alert(error);
       }
     } else {
       alert('Invalid Unique ID. Redirecting...');
