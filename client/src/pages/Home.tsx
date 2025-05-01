@@ -8,10 +8,10 @@ export default function Home() {
         <>
         <AuthProvider  >
             <Header/>
+            <ResponsiveWrapper>
+                <ProfileContainer />
+            </ResponsiveWrapper>
         </AuthProvider>
-        <ResponsiveWrapper>
-            <ProfileContainer />
-        </ResponsiveWrapper>
         </>
     );
     }

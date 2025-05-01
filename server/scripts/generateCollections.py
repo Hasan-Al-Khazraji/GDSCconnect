@@ -14,9 +14,10 @@ db = firestore.client()
 # Create 001 to 250 documents
 for i in range(1, 251):
     doc_id = f"{i:03}"  
-    doc_ref = db.collection('users').document(doc_id)
+    doc_ref = db.collection('hackers').document(doc_id)
     doc_ref.set({
         'email': '',
+        'password': '', 
         'profile': ['', '', '', '']  # name, school, linkedin, github
     })
 
