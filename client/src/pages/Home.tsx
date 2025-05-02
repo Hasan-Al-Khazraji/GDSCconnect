@@ -5,8 +5,8 @@ import Header from '../components/Header';
 export default function Home() {
     return (
         <ResponsiveWrapper>
-            <Header />
             <ProfileContainer />
+            <Header />
         </ResponsiveWrapper>
     );
     }

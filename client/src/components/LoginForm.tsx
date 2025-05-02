@@ -26,7 +26,7 @@ function LoginForm() {
 
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="bg-white p-6 rounded shadow-lg w-full max-w-sm">
+            <div className="bg-white p-6 shadow-lg w-full max-w-sm rounded-2xl">
                 <form onSubmit={handleSubmit} className="flex flex-col gap-4">
                     <h2 className="text-xl font-bold text-center">Log In</h2>
                     <input
@@ -34,7 +34,7 @@ function LoginForm() {
                         placeholder="Email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
-                        className="p-2 border rounded"
+                        className={`p-2 border rounded ${email ? 'font-medium' : 'font-bold'}`}
                         required
                     />
                     <input
