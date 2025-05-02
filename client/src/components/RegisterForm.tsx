@@ -33,8 +33,6 @@ export default function RegisterForm({ onRedirect }: RegisterFormProps) {
           email,
           password,
         });
-
-        alert('Registration successful!');
         onRedirect(`/${uniqueId}`);
       } catch (error) {
         console.error('Error during registration:', error);

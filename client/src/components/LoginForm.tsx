@@ -48,7 +48,8 @@ function LoginForm() {
                     <button type="submit" className="p-2 bg-blue-500 text-white rounded">
                         Log In
                     </button>
-                    <a href="/" className="p-2 bg-blue-500 text-white rounded text-center">
+                    <hr/>
+                    <a href="/" className="p-2 bg-white-500 text-blue-500 border-2 border-blue-500 rounded text-center">
                         Register
                     </a>
                     {error && <p className="text-red-500 text-center">{error}</p>}

@@ -13,7 +13,6 @@ export default function Landing() {
   const [alertShown, setAlertShown] = useState(false);
 
   if (authUser?.email && !alertShown) {
-    alert("Account does not exist!");
     setAlertShown(true); // Mark the alert as shown
     navigate(`/`);
   }
