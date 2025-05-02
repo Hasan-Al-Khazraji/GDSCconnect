@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        google: ["Google", 'sans-serif'],
+        GoogleSansDisplay: ["GoogleSansDisplay", "ui-sans-serif", "system-ui"],
       },
     },
   },
