@@ -45,8 +45,8 @@ export default function Landing() {
   if (checking) return null; 
 
   return (
-    <div className="flex flex-col items-center justify-center h-screen">
-      <h1 className="text-2xl font-bold mb-4">Register</h1>
+    <div className="flex flex-col items-center justify-center h-screen font-GoogleSansDisplay">
+      <h1 className="text-4xl font-bold mb-4">Register Your Account</h1>
       <RegisterForm onRedirect={handleRedirect} />
     </div>
   );

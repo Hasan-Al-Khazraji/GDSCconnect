@@ -11,6 +11,7 @@ interface RegisterFormProps {
 export default function RegisterForm({ onRedirect }: RegisterFormProps) {
   const [uniqueId, setUniqueId] = useState('');
   const { id } = useParams();
+  const [error, setError] = useState('');
 
   useEffect(() => {
     if (id) setUniqueId(id);
@@ -37,9 +38,10 @@ export default function RegisterForm({ onRedirect }: RegisterFormProps) {
       } catch (error) {
         console.error('Error during registration:', error);
         alert(error);
+        setError(error instanceof Error ? error.message : String(error));
       }
     } else {
-      alert('Invalid Unique ID. Redirecting...');
+      setError('Invalid Unique ID. Redirecting...');
       onRedirect(`/`);
     }
   };
@@ -62,6 +64,7 @@ export default function RegisterForm({ onRedirect }: RegisterFormProps) {
         placeholder="Enter a password"
         className="p-2 mb-4 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
       />
+      {error && <p className="text-red-500 text-center mb-4">{error}</p>}
       <button
         type="submit"
         className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
