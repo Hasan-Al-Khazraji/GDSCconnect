@@ -96,8 +96,8 @@ export default function ProfileContainer() {
     if (loading) return <p className="text-center">Loading...</p>;
 
     return (
-        <div className="border-4 border-black rounded-3xl mt-8">
-            <div className="bg-black rounded-t-2xl">
+        <div className="border-4 border-black rounded-3xl mt-8 font-GoogleSansDisplay shadow-[9px_7px_0px_2px_rgba(0,_0,_0,_0.1)]">
+            <div className="bg-[#323234] rounded-t-2xl">
                 <img src={require("../assets/images/GDSC_Hacks_Logo.png")} alt="Hello" className="scale-90" />
             </div>
             <div className="bg-white rounded-b-2xl pt-8">
@@ -106,7 +106,7 @@ export default function ProfileContainer() {
                     <img src={require("../assets/images/GDG_Watermark.png")} alt="Hello" className="w-24 p-3" />
                     {canEdit && (
                         <button
-                            className="bg-black text-white font-bold py-2 px-4 rounded-full ml-auto mr-4 hover:bg-gray-800 transition duration-300 ease-in-out"
+                            className={`text-white font-bold py-2 px-4 rounded-full ml-auto mr-4 transition duration-300 ease-in-out font-GoogleSansDisplay tracking-wide ${isEditing ? "bg-red-600 hover:bg-red-800" : "bg-[#323234] hover:bg-emerald-500"}`}
                             onClick={() => setIsEditing(!isEditing)}
                         >
                             {isEditing ? "Cancel" : "Edit Profile"}
@@ -144,7 +144,7 @@ export default function ProfileContainer() {
                             className="border border-gray-300 rounded-lg p-2 w-full mb-4"
                         />
                         <button
-                            className="bg-blue-500 text-white font-bold py-2 px-4 rounded-full hover:bg-blue-600 transition duration-300 ease-in-out mb-4"
+                            className="bg-blue-500 text-white font-bold py-2 px-4 rounded-full hover:bg-blue-600 transition duration-300 ease-in-out mb-4 font-GoogleSansDisplay tracking-wide"
                             onClick={handleSaveChanges}
                         >
                             Save Changes
